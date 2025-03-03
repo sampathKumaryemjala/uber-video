@@ -54,3 +54,13 @@ module.exports.loginUser = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+module.exports.getUserProfile = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.user._id);
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
